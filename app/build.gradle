@@ -23,6 +23,7 @@ dependencies {
     implementation deps.support.appCompat
     implementation deps.support.design
     implementation deps.support.cardView
+    implementation deps.support.multiDex
     implementation deps.support.recyclerView
 
     testImplementation 'junit:junit:4.12'
