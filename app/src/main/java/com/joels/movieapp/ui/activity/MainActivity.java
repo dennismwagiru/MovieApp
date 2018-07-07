@@ -1,5 +1,6 @@
 package com.joels.movieapp.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -85,6 +86,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(Movie movie) {
-        Toast.makeText(this, "Movie Clicked", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MovieActivity.class));
     }
 }

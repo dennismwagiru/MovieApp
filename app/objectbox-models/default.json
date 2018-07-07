@@ -1,0 +1,62 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:8906706624395889503",
+      "lastPropertyId": "4:1517420365321380812",
+      "name": "Movie",
+      "properties": [
+        {
+          "id": "1:7169178423202532371",
+          "name": "id"
+        },
+        {
+          "id": "2:7066942554398061866",
+          "name": "name"
+        },
+        {
+          "id": "3:8188740582542562217",
+          "name": "desc"
+        },
+        {
+          "id": "4:1517420365321380812",
+          "name": "img_url"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:4280882215202024893",
+      "lastPropertyId": "3:4458422659364092353",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:5388237193300293852",
+          "name": "id"
+        },
+        {
+          "id": "2:445728339161892036",
+          "name": "name"
+        },
+        {
+          "id": "3:4458422659364092353",
+          "name": "img_url"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:4280882215202024893",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

@@ -7,34 +7,32 @@ import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
 @Entity
-public class Movie implements Parcelable {
+public class User implements Parcelable {
 
     @Id
     Long id;
     String name;
-    String desc;
     String img_url;
 
-    public Movie() {
+    public User() {
 
     }
 
-    public Movie(Parcel in) {
+    public User(Parcel in) {
         id = in.readLong();
         name = in.readString();
-        desc = in.readString();
         img_url = in.readString();
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
+        public User createFromParcel(Parcel in) {
+            return new User(in);
         }
 
         @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
+        public User[] newArray(int size) {
+            return new User[size];
         }
     };
 
@@ -47,7 +45,6 @@ public class Movie implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeLong(id);
         parcel.writeString(name);
-        parcel.writeString(desc);
         parcel.writeString(img_url);
     }
 }
