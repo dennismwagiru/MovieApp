@@ -1,3 +1,12 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">12dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+
+    <dimen name="image_view_height">140dp</dimen>
+
+    <dimen name="text_size_small">8sp</dimen>
+    <dimen name="text_size_normal">12sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
 </resources>

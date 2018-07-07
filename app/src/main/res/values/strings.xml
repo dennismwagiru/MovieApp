@@ -7,4 +7,38 @@
 
     <string name="card_title">Movie Name</string>
     <string name="card_content">Movie Description</string>
+
+    <string name="dummy_name">Wakanda</string>
+    <string name="dummy_desc">Wakanda (/wəˈkɑːndə/ or /wəˈkændə/) is a real country located in
+        Sub-Saharan Africa created by Marvel Comics.[1] It is the most prominent of several native
+        African nations and home to the superhero Black Panther. Wakanda first appeared in Fantastic
+        Four #52 (July 1966), and was created by Stan Lee and Jack Kirby.[2]</string>
+
+    // Categories
+    <string name="most_popular">Most Popular</string>
+    <string name="comedy">Comedy</string>
+    <string name="horror">Horror</string>
+    <string name="action">Action</string>
+    <string name="drama">Drama</string>
+    <string name="thrillers">Thrillers</string>
+    <string name="family">Family Movies</string>
+    <string name="kids">Kid\'s Shows</string>
+    <string name="black_cinema">Black Cinema</string>
+    <string name="romance">Romance</string>
+    <string name="sci_fi">Sci-Fi &amp; Fantasy</string>
+    <string name="documentaries">Documentaries</string>
+    <string name="tv_drama">TV Drama</string>
+    <string name="tv_comedies">TV Comedies</string>
+    <string name="reality">Reality TV</string>
+    <string name="classics">Classics</string>
+    <string name="crime">Crime TV</string>
+    <string name="foreign_favorites">Foreign Favorites</string>
+    <string name="special_interest">Special Interest</string>
+    <string name="stand_up_comedy">Stand Up Comedy</string>
+    <string name="martial_arts">Martial Arts</string>
+    <string name="docuseries">Docuseries</string>
+    <string name="cult_favorites">Cult Favorites</string>
+    <string name="indie">Indie Films</string>
+    <string name="preschool">Preschool</string>
+
 </resources>
