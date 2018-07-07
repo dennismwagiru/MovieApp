@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +15,7 @@ import com.joels.movieapp.model.Movie;
 
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder>{
+public class LandMovieAdapter extends RecyclerView.Adapter<LandMovieAdapter.MyViewHolder>{
 
     private Context mContext;
     private List<Movie> movieList;
@@ -49,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         }
     }
 
-    public MovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler, List<Movie> movies){
+    public LandMovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler, List<Movie> movies){
         this.mContext = context;
         this.mClickHandler = mClickHandler;
         this.movieList = movies;
@@ -59,7 +58,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.movie_card, viewGroup, false);
+                .inflate(R.layout.land_movie_card, viewGroup, false);
 
         return new MyViewHolder(itemView);
     }
@@ -67,7 +66,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.mName.setText(R.string.dummy_name);
-        Glide.with(mContext).load(R.drawable.ic_movie_thumbnail).into(myViewHolder.mThumbnail);
+        Glide.with(mContext).load(R.drawable.ic_movie_thumbnail_land).into(myViewHolder.mThumbnail);
     }
 
     @Override
