@@ -102,9 +102,4 @@ public class MainActivity extends AppCompatActivity implements
     public void onClick(Movie movie) {
         startActivity(new Intent(this, MovieActivity.class));
     }
-
-    private void prepareMovies(){
-        Movie movie = new Movie();
-
-    }
 }

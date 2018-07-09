@@ -11,10 +11,10 @@ public class Movie implements Parcelable {
 
     @Id
     Long id;
-    String name;
-    String genre;
-    String desc;
-    String img_url;
+    public String name;
+    public String genre;
+    public String desc;
+    public String img_url;
 
     public Movie() {
 
