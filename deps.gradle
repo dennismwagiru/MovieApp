@@ -12,7 +12,7 @@ ext.deps = [
                 cardView        : 'com.android.support:cardview-v7:' + versions.support,
                 design          : 'com.android.support:design:' + versions.support,
                 multiDex        : 'com.android.support:multidex:' + versions.multiDex,
-                recyclerView    : 'com.android.support:recyclerview-v7:' + versions.support
+                recyclerView    : 'com.android.support:recyclerview-v7:' + versions.support,
         ],
 
         glide: [

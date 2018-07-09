@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.joels.movieapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:name=".MovieApp"
         android:allowBackup="true"
@@ -20,7 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MovieActivity"></activity>
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".ui.activity.MovieActivity" />
     </application>
 
 </manifest>

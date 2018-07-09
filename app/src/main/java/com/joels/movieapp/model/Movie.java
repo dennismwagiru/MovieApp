@@ -12,6 +12,7 @@ public class Movie implements Parcelable {
     @Id
     Long id;
     String name;
+    String genre;
     String desc;
     String img_url;
 
@@ -22,6 +23,7 @@ public class Movie implements Parcelable {
     public Movie(Parcel in) {
         id = in.readLong();
         name = in.readString();
+        genre = in.readString();
         desc = in.readString();
         img_url = in.readString();
     }
@@ -47,6 +49,7 @@ public class Movie implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeLong(id);
         parcel.writeString(name);
+        parcel.writeString(genre);
         parcel.writeString(desc);
         parcel.writeString(img_url);
     }

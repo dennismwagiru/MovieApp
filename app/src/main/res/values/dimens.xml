@@ -12,6 +12,9 @@
     <dimen name="land_image_view_height">60dp</dimen>
     <dimen name="land_image_view_width">140dp</dimen>
 
+    <dimen name="view_pager_height">300dp</dimen>
+    <dimen name="video_view_height">300dp</dimen>
+
     <dimen name="text_size_small">8sp</dimen>
     <dimen name="text_size_normal">12sp</dimen>
     <dimen name="text_size_medium">18sp</dimen>

@@ -1,23 +1,23 @@
 package com.joels.movieapp.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.joels.movieapp.R;
 import com.joels.movieapp.model.Movie;
 import com.joels.movieapp.ui.adapter.LandMovieAdapter;
 import com.joels.movieapp.ui.adapter.MovieAdapter;
+import com.joels.movieapp.ui.adapter.ScreenSlideAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,17 @@ public class MainActivity extends AppCompatActivity implements
     MovieAdapter movieAdapter;
     LandMovieAdapter mLandMovieAdapter;
 
+    /**
+     * The pager widget, which handles animation and allows swiping horizontally to access previous
+     * and next wizard steps.
+     */
+    private ViewPager mPager;
+
+    /**
+     * The pager adapter, which provides the pages to the view pager widget.
+     */
+    private PagerAdapter mPagerAdapter;
+
     private List<Movie> movies;
 
     @Override
@@ -39,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mPager = findViewById(R.id.view_pager);
+        mPagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
         mRecyclerView = findViewById(R.id.recyclerView);
         mLandRecyclerView = findViewById(R.id.landRecyclerView);
         Movie m = new Movie();
@@ -87,5 +101,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(Movie movie) {
         startActivity(new Intent(this, MovieActivity.class));
+    }
+
+    private void prepareMovies(){
+        Movie movie = new Movie();
+
     }
 }
