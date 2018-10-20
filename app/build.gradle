@@ -31,6 +31,15 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor deps.glide.compiler
 
+    // retrofit, gson
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.converter
+    implementation deps.gson
+
+    // boxfit
+    annotationProcessor deps.boxfit.processor
+    implementation deps.boxfit.boxfit
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

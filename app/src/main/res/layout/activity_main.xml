@@ -36,12 +36,12 @@
                 android:layout_height="@dimen/view_pager_height" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_extra_small"
                 android:textSize="@dimen/text_size_medium"
-                android:text="@string/most_popular"/>
+                android:textAlignment="center"
+                android:text="@string/top_rated"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -53,12 +53,12 @@
                 tools:visibility="visible" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_extra_small"
                 android:textSize="@dimen/text_size_medium"
-                android:text="@string/comedy"/>
+                android:textAlignment="center"
+                android:text="@string/most_popular"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/landRecyclerView"
@@ -66,7 +66,24 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="true"
                 android:scrollbars="horizontal"
-                tools:listitem="@layout/land_movie_card"
+                tools:listitem="@layout/movie_card"
+                tools:visibility="visible"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_extra_small"
+                android:textSize="@dimen/text_size_medium"
+                android:textAlignment="center"
+                android:text="@string/upcoming"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/upcomingRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="true"
+                android:scrollbars="horizontal"
+                tools:listItem="@layout/movie_card"
                 tools:visibility="visible"/>
 
         </LinearLayout>

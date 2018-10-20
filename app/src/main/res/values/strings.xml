@@ -15,7 +15,10 @@
         Four #52 (July 1966), and was created by Stan Lee and Jack Kirby.[2]</string>
 
     // Categories
+    <string name="top_rated">Top Rated</string>
     <string name="most_popular">Most Popular</string>
+    <string name="latest">Latest</string>
+    <string name="upcoming">Upcoming</string>
     <string name="comedy">Comedy</string>
     <string name="horror">Horror</string>
     <string name="action">Action</string>

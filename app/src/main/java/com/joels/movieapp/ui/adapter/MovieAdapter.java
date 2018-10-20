@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,12 +13,13 @@ import com.bumptech.glide.Glide;
 import com.joels.movieapp.R;
 import com.joels.movieapp.model.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder>{
 
     private Context mContext;
-    private List<Movie> movieList;
+    private List<Movie> movieList = new ArrayList<>();
 
     final private MovieAdapterOnCLickHandler mClickHandler;
 
@@ -49,10 +49,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         }
     }
 
-    public MovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler, List<Movie> movies){
+    public MovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler){
         this.mContext = context;
         this.mClickHandler = mClickHandler;
-        this.movieList = movies;
+    }
+
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
     }
 
     @NonNull
@@ -66,8 +69,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.mName.setText(R.string.dummy_name);
-        Glide.with(mContext).load(R.drawable.ic_movie_thumbnail).into(myViewHolder.mThumbnail);
+        myViewHolder.mName.setText(movieList.get(i).getTitles());
+        Glide.with(mContext).load(movieList.get(i).getPosterPath()).into(myViewHolder.mThumbnail);
     }
 
     @Override

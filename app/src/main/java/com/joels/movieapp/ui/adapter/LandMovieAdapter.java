@@ -13,12 +13,13 @@ import com.bumptech.glide.Glide;
 import com.joels.movieapp.R;
 import com.joels.movieapp.model.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LandMovieAdapter extends RecyclerView.Adapter<LandMovieAdapter.MyViewHolder>{
 
     private Context mContext;
-    private List<Movie> movieList;
+    private List<Movie> movieList = new ArrayList<>();
 
     final private MovieAdapterOnCLickHandler mClickHandler;
 
@@ -48,10 +49,13 @@ public class LandMovieAdapter extends RecyclerView.Adapter<LandMovieAdapter.MyVi
         }
     }
 
-    public LandMovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler, List<Movie> movies){
+    public LandMovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler){
         this.mContext = context;
         this.mClickHandler = mClickHandler;
-        this.movieList = movies;
+    }
+
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
     }
 
     @NonNull
@@ -65,8 +69,8 @@ public class LandMovieAdapter extends RecyclerView.Adapter<LandMovieAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.mName.setText(R.string.dummy_name);
-        Glide.with(mContext).load(R.drawable.ic_movie_thumbnail_land).into(myViewHolder.mThumbnail);
+        myViewHolder.mName.setText(movieList.get(i).getTitles());
+        Glide.with(mContext).load(movieList.get(i).getPosterPath()).into(myViewHolder.mThumbnail);
     }
 
     @Override

@@ -4,6 +4,34 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
+      "id": "1:8906706624395889503",
+      "lastPropertyId": "5:6737698864473852223",
+      "name": "Movie",
+      "properties": [
+        {
+          "id": "1:7169178423202532371",
+          "name": "id"
+        },
+        {
+          "id": "2:7066942554398061866",
+          "name": "name"
+        },
+        {
+          "id": "3:8188740582542562217",
+          "name": "desc"
+        },
+        {
+          "id": "4:1517420365321380812",
+          "name": "img_url"
+        },
+        {
+          "id": "5:6737698864473852223",
+          "name": "genre"
+        }
+      ],
+      "relations": []
+    },
+    {
       "id": "2:4280882215202024893",
       "lastPropertyId": "3:4458422659364092353",
       "name": "User",
@@ -30,17 +58,9 @@
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
-  "retiredEntityUids": [
-    8906706624395889503
-  ],
+  "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    7169178423202532371,
-    7066942554398061866,
-    8188740582542562217,
-    1517420365321380812,
-    6737698864473852223
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

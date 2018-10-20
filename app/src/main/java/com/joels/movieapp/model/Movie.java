@@ -3,29 +3,37 @@ package com.joels.movieapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import io.objectbox.annotation.Entity;
-import io.objectbox.annotation.Id;
+import com.google.gson.annotations.SerializedName;
 
-@Entity
 public class Movie implements Parcelable {
 
-    @Id
-    Long id;
-    public String name;
-    public String genre;
-    public String desc;
-    public String img_url;
+    private final String basePath = "http://image.tmdb.org/t/p/w185";
 
-    public Movie() {
+    @SerializedName("poster_path")
+    private String posterPath;
+    @SerializedName("title")
+    private String titles;
+    @SerializedName("original_title")
+    private String originalTitle;
+    @SerializedName("overview")
+    private String overview;
+    @SerializedName("release_date")
+    private String releaseDate;
 
+    public Movie(String posterPath, String titles, String originalTitle, String overview, String releaseDate) {
+        this.posterPath = posterPath;
+        this.titles = titles;
+        this.originalTitle = originalTitle;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
     }
 
-    public Movie(Parcel in) {
-        id = in.readLong();
-        name = in.readString();
-        genre = in.readString();
-        desc = in.readString();
-        img_url = in.readString();
+    protected Movie(Parcel in) {
+        posterPath = in.readString();
+        titles = in.readString();
+        originalTitle = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -40,17 +48,57 @@ public class Movie implements Parcelable {
         }
     };
 
+    public String getPosterPath() {
+        return basePath + posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public String getTitles() {
+        return titles;
+    }
+
+    public void setTitles(String titles) {
+        this.titles = titles;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
-        parcel.writeString(name);
-        parcel.writeString(genre);
-        parcel.writeString(desc);
-        parcel.writeString(img_url);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(posterPath);
+        dest.writeString(titles);
+        dest.writeString(originalTitle);
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
     }
 }
