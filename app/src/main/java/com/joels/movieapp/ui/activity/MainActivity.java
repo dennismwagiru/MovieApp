@@ -1,9 +1,13 @@
 package com.joels.movieapp.ui.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.joels.movieapp.R;
 import com.joels.movieapp.model.Movie;
 import com.joels.movieapp.model.MovieResponse;
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements
     List<Movie> upcoming = new ArrayList<>();
 
     ImageView imageView;
+    Movie latest = null ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
 
         imageView = findViewById(R.id.image_view);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.onClick(latest);
+            }
+        });
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mLandRecyclerView = findViewById(R.id.landRecyclerView);
@@ -124,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.body() != null) {
-                    Movie latest = response.body().getLatest();
+                    latest = response.body().getLatest();
                     if (latest.getPosterPath() == null){
                         latest = topRated.get(2);
                     }
@@ -182,7 +196,22 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(Movie movie) {
-        startActivity(new Intent(this, MovieActivity.class));
+        final AlertDialog myAlert = new AlertDialog.Builder(MainActivity.this)
+                .setTitle(movie.getOriginalTitle())
+                .setPositiveButton("Okay", null)
+                .setMessage(movie.getOverview()).create();
+
+        Glide.with(this)
+                .load(movie.getPosterPath())
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        myAlert.setIcon(resource);
+                    }
+                });
+
+        myAlert.show();
+
     }
 
 }
