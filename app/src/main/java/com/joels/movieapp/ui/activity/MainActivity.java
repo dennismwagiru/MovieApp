@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.joels.movieapp.R;
 import com.joels.movieapp.model.Movie;
 import com.joels.movieapp.model.MovieResponse;
@@ -46,16 +48,7 @@ public class MainActivity extends AppCompatActivity implements
     List<Movie> mostPopular = new ArrayList<>();
     List<Movie> upcoming = new ArrayList<>();
 
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
-    private ViewPager mPager;
-
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
-    private PagerAdapter mPagerAdapter;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +57,7 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mPager = findViewById(R.id.view_pager);
-        mPagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
+        imageView = findViewById(R.id.image_view);
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mLandRecyclerView = findViewById(R.id.landRecyclerView);
@@ -128,20 +119,26 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-//        Call<MovieResponse> latestCall = apiInterface.getLatest(apiKey);
-//        latestCall.enqueue(new Callback<MovieResponse>() {
-//            @Override
-//            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-//                if (response.body() != null) {
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MovieResponse> call, Throwable t) {
-//
-//            }
-//        });
+        Call<MovieResponse> latestCall = apiInterface.getLatest(apiKey);
+        latestCall.enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                if (response.body() != null) {
+                    Movie latest = response.body().getLatest();
+                    if (latest.getPosterPath() == null){
+                        latest = topRated.get(2);
+                    }
+
+                    Glide.with(MainActivity.this).load(latest.getPosterPath()).into(imageView);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+
+            }
+        });
 
         Call<MovieResponse> upcomingCall = apiInterface.getUpcoming(apiKey);
         upcomingCall.enqueue(new Callback<MovieResponse>() {

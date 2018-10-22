@@ -19,4 +19,8 @@ public class ScreenSlideFragment extends Fragment {
 
         return rootView;
     }
+
+    public ScreenSlideFragment() {
+
+    }
 }
