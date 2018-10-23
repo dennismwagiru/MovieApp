@@ -139,10 +139,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.body() != null) {
                     latest = response.body().getLatest();
-                    Log.d(TAG+" path", latest.getPosterPath());
-
                     Glide.with(MainActivity.this).load(latest.getPosterPath()).into(imageView);
-
                 }
             }
 
