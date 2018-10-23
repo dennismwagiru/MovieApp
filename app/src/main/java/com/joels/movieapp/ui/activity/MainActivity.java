@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements
         MovieAdapter.MovieAdapterOnCLickHandler, LandMovieAdapter.MovieAdapterOnCLickHandler {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String apiKey = ""; //Place your api key here
+    private static final String apiKey = "7e8f60e325cd06e164799af1e317d7a7"; //Place your api key here
 
     RecyclerView mRecyclerView;
     RecyclerView mLandRecyclerView;
@@ -139,9 +139,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.body() != null) {
                     latest = response.body().getLatest();
-                    if (latest.getPosterPath() == null){
-                        latest = topRated.get(2);
-                    }
+                    Log.d(TAG+" path", latest.getPosterPath());
 
                     Glide.with(MainActivity.this).load(latest.getPosterPath()).into(imageView);
 

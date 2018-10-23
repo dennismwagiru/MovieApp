@@ -19,6 +19,8 @@ public class MovieResponse {
     private String posterPath;
     @SerializedName("title")
     private String title;
+    @SerializedName("overview")
+    private String overview;
 
     public int getPage() {
         return page;
@@ -53,6 +55,8 @@ public class MovieResponse {
     }
 
     public Movie getLatest() {
-        return new Movie(posterPath, title, "", "", "");
+        Movie movie = new Movie(posterPath, title, "", overview, "");
+        movie.setPosterPath("http://image.tmdb.org/t/p/w185" + posterPath);
+        return movie;
     }
 }
