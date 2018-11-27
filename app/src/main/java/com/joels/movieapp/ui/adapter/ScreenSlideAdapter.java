@@ -1,9 +1,8 @@
 package com.joels.movieapp.ui.adapter;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.joels.movieapp.model.Movie;
 import com.joels.movieapp.ui.Fragment.ScreenSlideFragment;

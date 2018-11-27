@@ -4,7 +4,7 @@
     android:layout_width="@dimen/land_movie_card_width"
     android:layout_height="@dimen/land_movie_card_height">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium">
@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <com.joels.movieapp.ui.ProportionalImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/land_image_view_height"
@@ -39,6 +39,6 @@
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

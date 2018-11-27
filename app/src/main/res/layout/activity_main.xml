@@ -1,96 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context="com.joels.movieapp.ui.activity.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <ImageView
-                android:id="@+id/image_view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/view_pager_height"
-                android:src="@drawable/ic_movie_thumbnail_land"
-                android:scaleType="centerCrop"
-                />
+            <ProgressBar
+                android:id="@+id/progress_circular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_extra_small"
-                android:textSize="@dimen/text_size_medium"
-                android:textAlignment="center"
-                android:text="@string/top_rated"/>
+                android:orientation="vertical"
+                android:visibility="gone">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:scrollbars="horizontal"
-                tools:listitem="@layout/movie_card"
-                tools:visibility="visible" />
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_pager_height"
+                    android:src="@drawable/ic_movie_thumbnail_land"
+                    android:scaleType="centerCrop"
+                    />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_extra_small"
-                android:textSize="@dimen/text_size_medium"
-                android:textAlignment="center"
-                android:text="@string/most_popular"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_extra_small"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textAlignment="center"
+                    android:text="@string/top_rated"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/landRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="true"
-                android:scrollbars="horizontal"
-                tools:listitem="@layout/movie_card"
-                tools:visibility="visible"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:scrollbars="horizontal"
+                    tools:listitem="@layout/movie_card"
+                    tools:visibility="visible" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_extra_small"
-                android:textSize="@dimen/text_size_medium"
-                android:textAlignment="center"
-                android:text="@string/upcoming"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_extra_small"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textAlignment="center"
+                    android:text="@string/most_popular"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/upcomingRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="true"
-                android:scrollbars="horizontal"
-                tools:listItem="@layout/movie_card"
-                tools:visibility="visible"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/landRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="true"
+                    android:scrollbars="horizontal"
+                    tools:listitem="@layout/movie_card"
+                    tools:visibility="visible"/>
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_extra_small"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textAlignment="center"
+                    android:text="@string/upcoming"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/upcomingRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="true"
+                    android:scrollbars="horizontal"
+                    tools:listItem="@layout/movie_card"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </ScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

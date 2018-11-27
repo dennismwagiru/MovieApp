@@ -3,22 +3,23 @@ package com.joels.movieapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
+import io.objectbox.annotation.Id;
 
 public class Movie implements Parcelable {
 
     private final String basePath = "http://image.tmdb.org/t/p/w185";
 
-    @SerializedName("poster_path")
+    @Id
+    private float id;
     private String posterPath;
-    @SerializedName("title")
     private String titles;
-    @SerializedName("original_title")
     private String originalTitle;
-    @SerializedName("overview")
     private String overview;
-    @SerializedName("release_date")
     private String releaseDate;
+
+    public Movie() {
+
+    }
 
     public Movie(String posterPath, String titles, String originalTitle, String overview, String releaseDate) {
         this.posterPath = posterPath;
@@ -29,6 +30,7 @@ public class Movie implements Parcelable {
     }
 
     protected Movie(Parcel in) {
+        id = in.readFloat();
         posterPath = in.readString();
         titles = in.readString();
         originalTitle = in.readString();
@@ -95,6 +97,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeFloat(id);
         dest.writeString(posterPath);
         dest.writeString(titles);
         dest.writeString(originalTitle);

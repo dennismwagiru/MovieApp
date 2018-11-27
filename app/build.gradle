@@ -9,7 +9,11 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -28,19 +32,13 @@ dependencies {
     implementation deps.support.recyclerView
 
     implementation deps.glide.glide
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     annotationProcessor deps.glide.compiler
 
-    // retrofit, gson
-    implementation deps.retrofit.retrofit
-    implementation deps.retrofit.converter
-    implementation deps.gson
-
-    // boxfit
-    annotationProcessor deps.boxfit.processor
-    implementation deps.boxfit.boxfit
+    // Volley
+    implementation 'com.android.volley:volley:1.1.1'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
