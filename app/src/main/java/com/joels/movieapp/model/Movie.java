@@ -3,39 +3,64 @@ package com.joels.movieapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
+@Entity
 public class Movie implements Parcelable {
 
-    private final String basePath = "http://image.tmdb.org/t/p/w185";
+//    private final String basePath = "http://image.tmdb.org/t/p/w185";
 
     @Id
-    private float id;
-    private String posterPath;
-    private String titles;
-    private String originalTitle;
-    private String overview;
-    private String releaseDate;
+    Long id;
+    public String imdbId;
+    public String voteCount;
+    public String voteAverage;
+    public String popularity;
+    public String posterPath;
+    public String backdropPath;
+    public String title;
+    public String originalTitle;
+    public String overview;
+    public String releaseDate;
+    public String youtubeId;
+    public String category;
 
     public Movie() {
 
     }
 
-    public Movie(String posterPath, String titles, String originalTitle, String overview, String releaseDate) {
+    public Movie(String imdbId, String voteCount, String voteAverage, String popularity,
+                 String posterPath, String backdropPath, String title, String originalTitle, String overview,
+                 String releaseDate, String category) {
+        this.imdbId = imdbId;
+        this.voteCount = voteCount;
+        this.voteAverage = voteAverage;
+        this.popularity = popularity;
         this.posterPath = posterPath;
-        this.titles = titles;
+        this.backdropPath = backdropPath;
+        this.title = title;
         this.originalTitle = originalTitle;
         this.overview = overview;
         this.releaseDate = releaseDate;
+        this.category = category;
     }
 
+
     protected Movie(Parcel in) {
-        id = in.readFloat();
+        id = in.readLong();
+        imdbId = in.readString();
+        voteCount = in.readString();
+        voteAverage = in.readString();
+        popularity = in.readString();
         posterPath = in.readString();
-        titles = in.readString();
+        backdropPath = in.readString();
+        title = in.readString();
         originalTitle = in.readString();
         overview = in.readString();
         releaseDate = in.readString();
+        youtubeId = in.readString();
+        category = in.readString();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -50,46 +75,6 @@ public class Movie implements Parcelable {
         }
     };
 
-    public String getPosterPath() {
-        return basePath + posterPath;
-    }
-
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    public String getTitles() {
-        return titles;
-    }
-
-    public void setTitles(String titles) {
-        this.titles = titles;
-    }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -97,11 +82,18 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeFloat(id);
+        dest.writeLong(id);
+        dest.writeString(imdbId);
+        dest.writeString(voteCount);
+        dest.writeString(voteAverage);
+        dest.writeString(popularity);
         dest.writeString(posterPath);
-        dest.writeString(titles);
+        dest.writeString(backdropPath);
+        dest.writeString(title);
         dest.writeString(originalTitle);
         dest.writeString(overview);
         dest.writeString(releaseDate);
+        dest.writeString(youtubeId);
+        dest.writeString(category);
     }
 }

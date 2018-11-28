@@ -4,63 +4,84 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:8906706624395889503",
-      "lastPropertyId": "5:6737698864473852223",
+      "id": "3:1409257143233075850",
+      "lastPropertyId": "13:8814538314543182781",
       "name": "Movie",
       "properties": [
         {
-          "id": "1:7169178423202532371",
+          "id": "2:1639590982932182650",
           "name": "id"
         },
         {
-          "id": "2:7066942554398061866",
-          "name": "name"
+          "id": "3:8541348536407426059",
+          "name": "posterPath"
         },
         {
-          "id": "3:8188740582542562217",
-          "name": "desc"
+          "id": "4:7457493269459465160",
+          "name": "title"
         },
         {
-          "id": "4:1517420365321380812",
-          "name": "img_url"
+          "id": "5:4832535404020193351",
+          "name": "originalTitle"
         },
         {
-          "id": "5:6737698864473852223",
-          "name": "genre"
-        }
-      ],
-      "relations": []
-    },
-    {
-      "id": "2:4280882215202024893",
-      "lastPropertyId": "3:4458422659364092353",
-      "name": "User",
-      "properties": [
-        {
-          "id": "1:5388237193300293852",
-          "name": "id"
+          "id": "6:7584311302879965241",
+          "name": "overview"
         },
         {
-          "id": "2:445728339161892036",
-          "name": "name"
+          "id": "7:360518337229100441",
+          "name": "releaseDate"
         },
         {
-          "id": "3:4458422659364092353",
-          "name": "img_url"
+          "id": "8:4996066430916484499",
+          "name": "imdbId"
+        },
+        {
+          "id": "9:2292334760203362358",
+          "name": "voteCount"
+        },
+        {
+          "id": "10:5305915572173030062",
+          "name": "voteAverage"
+        },
+        {
+          "id": "11:6576481092326304199",
+          "name": "popularity"
+        },
+        {
+          "id": "12:7775861297566211843",
+          "name": "category"
+        },
+        {
+          "id": "13:8814538314543182781",
+          "name": "backdropPath"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "2:4280882215202024893",
+  "lastEntityId": "3:1409257143233075850",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    8906706624395889503,
+    4280882215202024893
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    7169178423202532371,
+    7066942554398061866,
+    8188740582542562217,
+    1517420365321380812,
+    6737698864473852223,
+    5388237193300293852,
+    445728339161892036,
+    4458422659364092353,
+    6361698193950479041
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

@@ -69,8 +69,8 @@ public class LandMovieAdapter extends RecyclerView.Adapter<LandMovieAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.mName.setText(movieList.get(i).getTitles());
-        Glide.with(mContext).load(movieList.get(i).getPosterPath()).into(myViewHolder.mThumbnail);
+        myViewHolder.mName.setText(movieList.get(i).title);
+        Glide.with(mContext).load(movieList.get(i).posterPath).into(myViewHolder.mThumbnail);
     }
 
     @Override

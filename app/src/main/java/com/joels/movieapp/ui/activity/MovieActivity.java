@@ -1,31 +1,39 @@
 package com.joels.movieapp.ui.activity;
 
 import android.net.Uri;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.joels.movieapp.R;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerInitListener;
 
 public class MovieActivity extends AppCompatActivity {
 
-    VideoView mVideoView;
+    YouTubePlayerView youTubePlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-        mVideoView = findViewById(R.id.videoView);
-        String address = "https://www.youtube.com/watch?v=fU6mInJ20OE";
+        youTubePlayerView = findViewById(R.id.videoView);
 
-        Uri vidUri = Uri.parse(address);
-        mVideoView.setVideoURI(vidUri);
+        getLifecycle().addObserver(youTubePlayerView);
 
-        MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(mVideoView);
-        mVideoView.setMediaController(mediaController);
+        youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady() {
+                String videoId = "fU6mInJ20OE";
+                initializedYouTubePlayer.loadVideo(videoId, 0);
+            }
+        }), true);
 
     }
 

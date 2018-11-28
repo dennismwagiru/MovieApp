@@ -7,8 +7,9 @@
     tools:context=".ui.activity.MovieActivity">
 
 
-    <VideoView
+    <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/video_view_height" />
+        android:layout_height="wrap_content" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

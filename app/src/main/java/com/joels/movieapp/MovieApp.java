@@ -30,4 +30,8 @@ public class MovieApp extends MultiDexApplication {
     public RetryPolicy getPolicy() {
         return policy;
     }
+
+    public static String getImdbImagePath() {
+        return "http://image.tmdb.org/t/p/w185";
+    }
 }

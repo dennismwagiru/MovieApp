@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.joels.movieapp.MovieApp;
 import com.joels.movieapp.R;
 import com.joels.movieapp.model.Movie;
 
@@ -49,9 +50,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         }
     }
 
-    public MovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler){
+    public MovieAdapter(Context context, MovieAdapterOnCLickHandler mClickHandler, List<Movie> movies){
         this.mContext = context;
         this.mClickHandler = mClickHandler;
+        this.movieList = movies;
     }
 
     public void setMovieList(List<Movie> movieList) {
@@ -69,8 +71,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.mName.setText(movieList.get(i).getTitles());
-        Glide.with(mContext).load(movieList.get(i).getPosterPath()).into(myViewHolder.mThumbnail);
+        myViewHolder.mName.setText(movieList.get(i).title);
+        final String path = MovieApp.getImdbImagePath() + movieList.get(i).posterPath;
+        Glide.with(mContext).load(path).into(myViewHolder.mThumbnail);
     }
 
     @Override
