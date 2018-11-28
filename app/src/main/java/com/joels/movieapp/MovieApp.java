@@ -34,4 +34,8 @@ public class MovieApp extends MultiDexApplication {
     public static String getImdbImagePath() {
         return "http://image.tmdb.org/t/p/w185";
     }
+
+    public static String getApiKey() {
+        return "7e8f60e325cd06e164799af1e317d7a7";
+    }
 }

@@ -24,6 +24,10 @@ public class Movie implements Parcelable {
     public String overview;
     public String releaseDate;
     public String youtubeId;
+    public String tagLine;
+    public String runtime;
+    public String budget;
+    public String revenue;
     public String category;
 
     public Movie() {
@@ -60,6 +64,10 @@ public class Movie implements Parcelable {
         overview = in.readString();
         releaseDate = in.readString();
         youtubeId = in.readString();
+        tagLine = in.readString();
+        runtime = in.readString();
+        budget = in.readString();
+        revenue = in.readString();
         category = in.readString();
     }
 
@@ -94,6 +102,10 @@ public class Movie implements Parcelable {
         dest.writeString(overview);
         dest.writeString(releaseDate);
         dest.writeString(youtubeId);
+        dest.writeString(tagLine);
+        dest.writeString(runtime);
+        dest.writeString(budget);
+        dest.writeString(revenue);
         dest.writeString(category);
     }
 }

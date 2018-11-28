@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "3:1409257143233075850",
-      "lastPropertyId": "13:8814538314543182781",
+      "lastPropertyId": "15:5384106066749860212",
       "name": "Movie",
       "properties": [
         {
@@ -55,6 +55,14 @@
         {
           "id": "13:8814538314543182781",
           "name": "backdropPath"
+        },
+        {
+          "id": "14:5603369264075213789",
+          "name": "youtubeId"
+        },
+        {
+          "id": "15:5384106066749860212",
+          "name": "tagLine"
         }
       ],
       "relations": []

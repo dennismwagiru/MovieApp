@@ -1,6 +1,7 @@
 package com.joels.movieapp.ui.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
-    private static final String apiKey = "7e8f60e325cd06e164799af1e317d7a7"; //Place your api key here
 
     private final String[] resources = {"now_playing", "popular", "top_rated", "upcoming"};
     private static int resource_index = 0;
@@ -118,100 +118,109 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(Movie movie) {
-        YouTubePlayerView youTubePlayerView;
-        TextView overview;
-        ProgressBar progressBar;
-        if (movie != null) {
-
-            LayoutInflater li = LayoutInflater.from(MainActivity.this);
-            final View promptsView = li.inflate(R.layout.player, null);
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    MainActivity.this);
-            alertDialogBuilder.setView(promptsView);
-
-            youTubePlayerView = promptsView.findViewById(R.id.videoView);
-            overview = promptsView.findViewById(R.id.overview);
-            progressBar = promptsView.findViewById(R.id.progress);
-
-            getLifecycle().addObserver(youTubePlayerView);
-            if (movie.youtubeId == null) {
-                RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this, new HurlStack());
-                final String url = BASE_URL + "movie/" + movie.imdbId + "?api_key=" + apiKey + "&append_to_response=videos";
-                StringRequest request = new StringRequest(Request.Method.GET, url,
-                        response -> {
-                            try {
-                                JSONObject object = new JSONObject(response);
-                                Log.e(TAG, response);
-                                JSONObject videos = object.getJSONObject("videos");
-                                Log.e(TAG, videos.toString());
-                                JSONArray results = videos.getJSONArray("results");
-                                Log.e(TAG, results.toString());
-                                for (int i = 0; i < results.length(); i++) {
-                                    JSONObject video = results.getJSONObject(i);
-                                    if (video.getString("site").equalsIgnoreCase("youtube")) {
-                                        movie.youtubeId = video.getString("key");
-                                        movieBox.put(movie);
-                                        progressBar.setVisibility(View.GONE);
-                                        youTubePlayerView.setVisibility(View.VISIBLE);
-                                        youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
-                                            @Override
-                                            public void onReady() {
-                                                initializedYouTubePlayer.loadVideo(movie.youtubeId, 0);
-                                            }
-                                        }), true);
-                                        break;
-                                    }
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        },
-                        error -> {
-                            NetworkResponse networkResponse = error.networkResponse;
-                            try {
-                                String response = new String(networkResponse.data, "UTF-8");
-                                Log.e(TAG + " error", response);
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
-                        });
-
-                request.setRetryPolicy(((MovieApp) getApplicationContext()).getPolicy());
-                requestQueue.add(request);
-            } else  {
-                youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
-                    @Override
-                    public void onReady() {
-                        initializedYouTubePlayer.loadVideo(movie.youtubeId, 0);
-                    }
-                }), true);
-            }
-
-            overview.setText(movie.overview);
-            alertDialogBuilder
-                    .setCancelable(false)
-                    .setNegativeButton("Cancel",
-                            (dialog, id) -> dialog.cancel());
-
-            AlertDialog alertDialog = alertDialogBuilder.create();
-
-            alertDialog.setTitle(movie.originalTitle);
-
-            Glide.with(this)
-                    .load(MovieApp.getImdbImagePath() + movie.posterPath)
-                    .into(new SimpleTarget<Drawable>() {
-                        @Override
-                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                            alertDialog.setIcon(resource);
-                        }
-                    });
-            alertDialog.show();
-        }
+        Intent intent = new Intent(MainActivity.this, MovieActivity.class);
+        intent.putExtra("movie", movie);
+        startActivity(intent);
+//        YouTubePlayerView youTubePlayerView;
+//        TextView overview;
+//        ProgressBar progressBar;
+//        if (movie != null) {
+//
+//            LayoutInflater li = LayoutInflater.from(MainActivity.this);
+//            final View promptsView = li.inflate(R.layout.player, null);
+//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                    MainActivity.this);
+//            alertDialogBuilder.setView(promptsView);
+//
+//            youTubePlayerView = promptsView.findViewById(R.id.videoView);
+//            overview = promptsView.findViewById(R.id.overview);
+//            progressBar = promptsView.findViewById(R.id.progress);
+//
+//            getLifecycle().addObserver(youTubePlayerView);
+//            if (movie.youtubeId == null) {
+//                RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this, new HurlStack());
+//                final String url = BASE_URL + "movie/" + movie.imdbId + "?api_key=" + MovieApp.getApiKey() + "&append_to_response=videos";
+//                StringRequest request = new StringRequest(Request.Method.GET, url,
+//                        response -> {
+//                            try {
+//                                JSONObject object = new JSONObject(response);
+//                                Log.e(TAG, response);
+//                                JSONObject videos = object.getJSONObject("videos");
+//                                Log.e(TAG, videos.toString());
+//                                JSONArray results = videos.getJSONArray("results");
+//                                Log.e(TAG, results.toString());
+//                                for (int i = 0; i < results.length(); i++) {
+//                                    JSONObject video = results.getJSONObject(i);
+//                                    if (video.getString("site").equalsIgnoreCase("youtube")) {
+//                                        movie.youtubeId = video.getString("key");
+//                                        movieBox.put(movie);
+//                                        for (Movie m : movieBox.getAll()) {
+//                                            if (m.imdbId.equals(movie.imdbId)) {
+//                                                m.youtubeId = video.getString("key");
+//                                                movieBox.put(m);
+//                                            }
+//                                        }
+//                                        progressBar.setVisibility(View.GONE);
+//                                        youTubePlayerView.setVisibility(View.VISIBLE);
+//                                        youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+//                                            @Override
+//                                            public void onReady() {
+//                                                initializedYouTubePlayer.loadVideo(movie.youtubeId, 0);
+//                                            }
+//                                        }), true);
+//                                        break;
+//                                    }
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        },
+//                        error -> {
+//                            NetworkResponse networkResponse = error.networkResponse;
+//                            try {
+//                                String response = new String(networkResponse.data, "UTF-8");
+//                                Log.e(TAG + " error", response);
+//                            } catch (UnsupportedEncodingException e) {
+//                                e.printStackTrace();
+//                            }
+//                        });
+//
+//                request.setRetryPolicy(((MovieApp) getApplicationContext()).getPolicy());
+//                requestQueue.add(request);
+//            } else  {
+//                youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+//                    @Override
+//                    public void onReady() {
+//                        initializedYouTubePlayer.loadVideo(movie.youtubeId, 0);
+//                    }
+//                }), true);
+//            }
+//
+//            overview.setText(movie.overview);
+//            alertDialogBuilder
+//                    .setCancelable(false)
+//                    .setNegativeButton("Cancel",
+//                            (dialog, id) -> dialog.cancel());
+//
+//            AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//            alertDialog.setTitle(movie.originalTitle);
+//
+//            Glide.with(this)
+//                    .load(MovieApp.getImdbImagePath() + movie.posterPath)
+//                    .into(new SimpleTarget<Drawable>() {
+//                        @Override
+//                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                            alertDialog.setIcon(resource);
+//                        }
+//                    });
+//            alertDialog.show();
+//        }
     }
 
     private void fetchMovies(String resource) {
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this, new HurlStack());
-        final String url = BASE_URL + "movie/"+ resource +"?api_key=" + apiKey + "&append_to_response=videos";
+        final String url = BASE_URL + "movie/"+ resource +"?api_key=" + MovieApp.getApiKey() + "&append_to_response=videos";
         Log.e(TAG + " url", url);
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 response -> {
