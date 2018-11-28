@@ -126,6 +126,8 @@ public class MovieActivity extends AppCompatActivity {
             } else {
                 tagLine.setText(movie.tagLine);
                 tagLine.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                youTubePlayerView.setVisibility(View.VISIBLE);
                 youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                     @Override
                     public void onReady() {
