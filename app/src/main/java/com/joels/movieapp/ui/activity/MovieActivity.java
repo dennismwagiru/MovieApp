@@ -68,7 +68,7 @@ public class MovieActivity extends AppCompatActivity {
 
         if (movie != null) {
             title.setText(movie.title);
-            releaseDate.setText(movie.releaseDate);
+            releaseDate.setText("Released on: " + movie.releaseDate);
             overview.setText(movie.overview);
             getLifecycle().addObserver(youTubePlayerView);
             if (movie.youtubeId == null || movie.tagLine == null) {
