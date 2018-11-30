@@ -1,6 +1,7 @@
 # Movie App 
 
 Movie app to list movies from IMDB.
+> * The final apk can be download here : https://github.com/dennismwagiru/MovieApp/blob/master/app.apk
 
 ## Prerequisites
 You will need the following to run this project:
