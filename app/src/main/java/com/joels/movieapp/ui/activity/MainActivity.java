@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.e(TAG + " url", url);
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 response -> {
+            Log.e(TAG, response);
                     try {
                         JSONObject object = new JSONObject(response);
                         JSONArray results = object.getJSONArray("results");
@@ -388,20 +389,18 @@ public class MainActivity extends AppCompatActivity implements
     // Generate palette asynchronously and use it on a different
 // thread using onGenerated()
     public void createPaletteAsync(Bitmap bitmap) {
-        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-            public void onGenerated(Palette p) {
-                // Use generated instance
-                int darkPrimaryColor = p.getDarkVibrantColor(getResources().getColor(R.color.colorPrimaryDark));
-                int primaryColor = p.getVibrantColor(getResources().getColor(R.color.colorPrimary));
-                toolbar.setBackgroundColor(primaryColor);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Window window = getWindow();
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                    window.setStatusBarColor(darkPrimaryColor);
-                }
+        Palette.from(bitmap).generate(p -> {
+            // Use generated instance
+            assert p != null;
+            int darkPrimaryColor = p.getDarkVibrantColor(getResources().getColor(R.color.colorPrimaryDark));
+            int primaryColor = p.getVibrantColor(getResources().getColor(R.color.colorPrimary));
+            toolbar.setBackgroundColor(primaryColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(darkPrimaryColor);
             }
         });
     }
-
 
 }
